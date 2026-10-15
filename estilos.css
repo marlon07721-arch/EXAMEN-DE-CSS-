@@ -1,0 +1,281 @@
+
+:root {
+  /* Colores suaves */
+  --color-primario: #2563eb;
+  --color-primario-oscuro: #1d4ed8;
+  --color-acento: #f59e0b;
+  --color-texto: #1e293b;
+  --color-texto-suave: #64748b;
+  --color-borde: #cbd5e1;
+  --color-campo: #f8fafc;
+  --color-blanco: #ffffff;
+  --color-error: #dc2626;
+  --color-exito: #16a34a;
+
+  --radio: 12px;
+  --sombra: 0 20px 45px rgba(15, 23, 42, 0.15);
+  --sombra-boton: 0 10px 22px rgba(37, 99, 235, 0.35);
+  --transicion: 0.3s ease;
+
+  /* Tipografía moderna (fuentes del sistema, sin librerías externas) */
+  --fuente: "Segoe UI", "Inter", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--fuente);
+  color: var(--color-texto);
+  line-height: 1.5;
+  background-color: #0f172a;
+}
+
+/* Texto solo para lectores de pantalla */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Encabezado y pie de página */
+.encabezado {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+}
+
+.encabezado__logo {
+  height: 44px;
+  width: auto;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+}
+
+.encabezado__marca {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.encabezado__marca strong {
+  color: var(--color-acento);
+}
+
+.pie {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ==========================================================
+   3. DISEÑO VISUAL (CSS)
+   ========================================================== */
+
+/* 3.h Formulario centrado vertical y horizontalmente dentro de su sección */
+.matricula {
+  flex: 1;
+  display: flex;
+  justify-content: center;   /* centrado horizontal */
+  align-items: center;       /* centrado vertical */
+  padding: 2rem 1rem;
+}
+
+.formulario {
+  width: 100%;
+  max-width: 700px;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border-radius: calc(var(--radio) * 1.5);
+  border-top: 6px solid var(--color-primario);
+  box-shadow: var(--sombra);
+}
+
+.formulario__cabecera {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.formulario__icono {
+  margin-bottom: 0.5rem;
+  padding: 6px;
+  background-color: #fef3c7;
+  border-radius: 50%;
+}
+
+.formulario__titulo {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.formulario__subtitulo {
+  margin-top: 0.5rem;
+  color: var(--color-texto-suave);
+  font-size: 1rem;
+}
+
+/* 3.k Uso de Grid para distribuir los campos de forma ordenada */
+.formulario__grupo {
+  border: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem 1.5rem;
+}
+
+/* 3.k Uso de Flexbox dentro de cada campo (etiqueta arriba, control abajo) */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.campo--completo {
+  grid-column: 1 / -1;
+}
+
+.campo__etiqueta {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* Asterisco visual para campos obligatorios */
+.campo__etiqueta::after {
+  content: " *";
+  color: var(--color-error);
+}
+
+/* 3.i Campos con bordes redondeados, padding, colores suaves y tipografía moderna */
+.campo__control {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--color-texto);
+  background-color: var(--color-campo);
+  border: 2px solid var(--color-borde);
+  border-radius: var(--radio);
+  outline: none;
+  transition: border-color var(--transicion), box-shadow var(--transicion), background-color var(--transicion);
+}
+
+.campo__control::placeholder {
+  color: #94a3b8;
+}
+
+.campo__control:hover {
+  border-color: #93c5fd;
+}
+
+.campo__control:focus {
+  background-color: var(--color-blanco);
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+/* Select con flecha personalizada (img/flecha-abajo.png) */
+select.campo__control {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("img/flecha-abajo.png");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 16px;
+  padding-right: 2.75rem;
+}
+
+.campo__control--area {
+  resize: vertical;
+  min-height: 130px;
+}
+
+/* Apoyo visual a las validaciones nativas de HTML5 (2.e, 2.f) */
+.campo__control:user-invalid {
+  border-color: var(--color-error);
+  background-color: #fef2f2;
+}
+
+.campo__control:user-valid {
+  border-color: var(--color-exito);
+}
+
+.campo__nota {
+  display: none;
+  font-size: 0.85rem;
+  color: var(--color-error);
+}
+
+.campo__control:user-invalid + .campo__nota {
+  display: block;
+}
+
+/* Aviso general encima del botón (solo CSS, con :has) */
+.formulario__aviso {
+  display: none;
+  margin-top: 1.5rem;
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #991b1b;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-left: 5px solid var(--color-error);
+  border-radius: var(--radio);
+}
+
+.formulario:has(.campo__control:user-invalid) .formulario__aviso {
+  display: block;
+}
+
+/* 3.j Botón con efecto hover (cambio de color y sombra) */
+.boton {
+  display: block;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-blanco);
+  background: linear-gradient(135deg, var(--color-primario), var(--color-primario-oscuro));
+  border: none;
+  border-radius: var(--radio);
+  cursor: pointer;
+}
+
+.boton:hover {
+  background: linear-gradient(135deg, var(--color-primario-oscuro), #1e3a8a);
+  box-shadow: var(--sombra-boton);
+  transform: translateY(-3px);
+}
+
+.boton:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.boton:focus-visible {
+  outline: 3px solid var(--color-acento);
+  outline-offset: 3px;
+}

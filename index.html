@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- 4. Responsividad: viewport para móviles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Formulario de solicitud de matrícula para cursos de conducción.">
+  <title>Solicitud de Matrícula | Agencia de Conducción</title>
+  <!-- 6.t Carpeta img/: ícono de la pestaña -->
+  <link rel="icon" href="img/icono-carro.png" type="image/png">
+  <!-- 6.s Hojas de estilo (el orden importa) -->
+  <link rel="stylesheet" href="estilos.css">      <!-- 3. Diseño visual -->
+  <link rel="stylesheet" href="responsivo.css">   <!-- 4. Responsividad -->
+  <link rel="stylesheet" href="animaciones.css">  <!-- 5. Animaciones -->
+</head>
+<body>
+
+  <header class="encabezado">
+    <img src="img/icono-carro.png" alt="Logo de la agencia: carro amarillo" class="encabezado__logo" width="80" height="44">
+    <p class="encabezado__marca">Agencia de Conducción <strong>Ruta Segura</strong></p>
+  </header>
+
+  <main>
+    <!-- ======================================================
+         1. ESTRUCTURA HTML SEMÁNTICA
+         1.a Sección con id="matricula"
+         ====================================================== -->
+    <section id="matricula" class="matricula" aria-labelledby="titulo-matricula">
+
+      <!-- 1.b Formulario con los campos obligatorios -->
+      <form class="formulario" action="#" method="post">
+
+        <header class="formulario__cabecera">
+          <img src="img/icono-volante.png" alt="" class="formulario__icono" width="64" height="64">
+          <h1 id="titulo-matricula" class="formulario__titulo">Solicitud de matrícula</h1>
+          <p class="formulario__subtitulo">Completa tus datos y te contactaremos para iniciar tu curso de conducción.</p>
+        </header>
+
+        <fieldset class="formulario__grupo">
+          <legend class="sr-only">Datos personales y del curso</legend>
+
+          <!-- 1.b.i Nombre completo (input type="text")
+               2.e required | 2.g placeholder + label for="nombre" -->
+          <div class="campo campo--completo">
+            <label for="nombre" class="campo__etiqueta">Nombre completo</label>
+            <input
+              type="text"
+              id="nombre"
+              aria-describedby="nota-nombre"
+              name="nombre"
+              class="campo__control"
+              placeholder="Ej: María Fernanda López"
+              autocomplete="name"
+              minlength="3"
+              required>
+            <!-- 2. Nota que aparece si el campo está vacío o mal lleno -->
+            <small id="nota-nombre" class="campo__nota">Escribe tu nombre completo (mínimo 3 letras).</small>
+          </div>
+
+          <!-- 1.b.ii Correo electrónico (input type="email")
+               2.e required | 2.f validación automática del correo | 2.g placeholder + label -->
+          <div class="campo">
+            <label for="correo" class="campo__etiqueta">Correo electrónico</label>
+            <input
+              type="email"
+              id="correo"
+              aria-describedby="nota-correo"
+              name="correo"
+              class="campo__control"
+              placeholder="ejemplo@correo.com"
+              autocomplete="email"
+              required>
+            <!-- 2. Nota que aparece si el campo está vacío o mal lleno -->
+            <small id="nota-correo" class="campo__nota">Escribe un correo válido, por ejemplo: nombre@correo.com</small>
+          </div>
+
+          <!-- 1.b.iii Número de teléfono (input type="tel")
+               2.e required | 2.f validación automática con pattern | 2.g placeholder + label -->
+          <div class="campo">
+            <label for="telefono" class="campo__etiqueta">Número de teléfono</label>
+            <input
+              type="tel"
+              id="telefono"
+              aria-describedby="nota-telefono"
+              name="telefono"
+              class="campo__control"
+              placeholder="3001234567"
+              autocomplete="tel"
+              pattern="[0-9]{7,10}"
+              title="Ingresa solo números, entre 7 y 10 dígitos."
+              required>
+            <!-- 2. Nota que aparece si el campo está vacío o mal lleno -->
+            <small id="nota-telefono" class="campo__nota">Escribe solo números, entre 7 y 10 dígitos.</small>
+          </div>
+
+          <!-- 1.b.iv Tipo de curso (select: carro, moto, mixto)
+               2.e required | 2.g label for="curso" -->
+          <div class="campo campo--completo">
+            <label for="curso" class="campo__etiqueta">Tipo de curso</label>
+            <select id="curso"
+              aria-describedby="nota-curso" name="curso" class="campo__control" required>
+              <option value="" disabled selected>Selecciona un curso</option>
+              <option value="carro">Carro</option>
+              <option value="moto">Moto</option>
+              <option value="mixto">Mixto</option>
+            </select>
+
+
+            <!-- 2. Nota que aparece si el campo está vacío o mal lleno -->
+
+            <small id="nota-curso" class="campo__nota">Selecciona el tipo de curso: carro, moto o mixto.</small>
+          </div>
+
+          <!-- 1.c Mensaje o comentario (textarea)
+               2.e required | 2.g placeholder + label for="mensaje" -->
+
+          <div class="campo campo--completo">
+            <label for="mensaje" class="campo__etiqueta">Mensaje o comentario</label>
+            <textarea
+              id="mensaje"
+              aria-describedby="nota-mensaje"
+              name="mensaje"
+              class="campo__control campo__control--area"
+              rows="5"
+              placeholder="Cuéntanos tu horario preferido o cualquier duda que tengas..."
+              minlength="10"
+              required></textarea>
+            <!-- 2. Nota que aparece si el campo está vacío o mal lleno -->
+            <small id="nota-mensaje" class="campo__nota">Escribe un mensaje de al menos 10 caracteres.</small>
+          </div>
+        </fieldset>
+
+        <!-- 2. Aviso general: aparece si algún campo no está lleno correctamente -->
+        <p class="formulario__aviso" role="alert">
+          ⚠️ No se puede enviar la solicitud: completa todos los campos obligatorios (*) marcados en rojo.
+        </p>
+
+        <!-- 1.d Botón Enviar solicitud -->
+        <button type="submit" class="boton">Enviar solicitud</button>
+      </form>
+
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>&copy; 2026 Ruta Segura — Agencia de Conducción</p>
+  </footer>
+
+</body>
+</html>

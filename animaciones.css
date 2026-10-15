@@ -1,0 +1,59 @@
+/* ==========================================================
+   Solicitud de matrícula – Agencia de Conducción Ruta Segura
+   Archivo: animaciones.css  ->  5. Animaciones y detalles visuales (o, p, q)
+   ========================================================== */
+
+
+/* ==========================================================
+   5. ANIMACIONES Y DETALLES VISUALES
+   ========================================================== */
+
+/* 5.o Transición suave al pasar sobre el botón */
+.boton {
+  transition: transform var(--transicion), box-shadow var(--transicion), background var(--transicion);
+}
+
+/* 5.p Animación de entrada (fundido + diapositiva) del formulario al cargar.
+       Se ejecuta UNA sola vez: inicio (0%) -> estado (60%) -> final (100%) */
+.formulario {
+  opacity: 0;
+  animation: entradaFormulario 0.9s ease-out 0.2s 1 forwards;
+}
+
+@keyframes entradaFormulario {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.97);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-6px) scale(1.005);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 5.q Fondo tenue / degradado detrás del formulario (foto de img/) */
+body {
+  background-image:
+    linear-gradient(160deg, rgba(15, 23, 42, 0.55) 0%, rgba(30, 58, 138, 0.45) 55%, rgba(245, 158, 11, 0.25) 100%),
+    url("img/fondo-carretera.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Accesibilidad: respeta a quienes prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .formulario {
+    animation: none;
+    opacity: 1;
+  }
+
+  .boton,
+  .campo__control {
+    transition: none;
+  }
+}
